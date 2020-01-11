@@ -15,8 +15,8 @@ const setup = (props = {}) => {
   const setupProps = {...defaultProps, ...props}
   return shallow(<Congrats {...setupProps}/>)
 }
+
 describe('<Congrats />', () => {
-  
   test('renders without error', ()=> {
     const wrapper = setup()
     const component = findElement(wrapper, '.congrats')

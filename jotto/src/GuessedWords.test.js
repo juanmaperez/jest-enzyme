@@ -1,4 +1,5 @@
 import React from 'react'
+import { shallow } from 'enzyme' 
 import { findElement, checkProps } from './../test/testUtils'
 import GuessedWords from './GuessedWords'
 
@@ -24,6 +25,18 @@ describe('<GuessedWords />', ()=> {
   })
 
   describe('if there are no words guessed', () => {
+    let wrapper
+    beforeEach(()=> {
+      wrapper = setup({guessedWords: []})
+    })
+    test('renders without errors', () => {
+      const component = findElement(wrapper, '.guessed-words')
+      expect(component.length).toBe(1)
+    })
+    test('renders intructions to guess a word', () => {
+      const component = findElement(wrapper, '.guessed-intructions')
+      expect(component.length).toBe(1)
+    })
 
   })
   describe('if there are words guessed', () => {
