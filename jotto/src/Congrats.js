@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 /**
  * Functional React Component
  * @function 
@@ -7,10 +7,16 @@ import React from 'react'
  * @returns { JSX.Element } Rendered component or null if 'success' props is false
  */
 
-export default ({success}) => {
+const Congrats = ({success}) => {
   return (
     <div className="congrats">
       { success ? <span className="message">Congrats! you guessed the word</span> : null }
     </div>
   )
 }
+
+Congrats.propTypes = {
+  success: PropTypes.bool.isRequired
+}
+
+export default Congrats;

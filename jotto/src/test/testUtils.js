@@ -1,3 +1,4 @@
+import checkPropTypes from 'check-prop-types'
 
 /**
  * 
@@ -6,3 +7,9 @@
  * @returns {ShallowWrapper}
  */
 export const findElement = (wrapper, selector) => wrapper.find(selector)
+
+
+export const checkProps = (component, conformingProps) => {
+  const propError = checkPropTypes(component.propTypes, conformingProps, 'prop', component.name)
+  expect(propError).toBeUndefined()
+}
