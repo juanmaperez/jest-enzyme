@@ -34,12 +34,34 @@ describe('<GuessedWords />', ()=> {
       expect(component.length).toBe(1)
     })
     test('renders intructions to guess a word', () => {
-      const component = findElement(wrapper, '.guessed-intructions')
-      expect(component.length).toBe(1)
+      const instructions = findElement(wrapper, '.guessed-intructions')
+      expect(instructions.length).toBe(1)
     })
 
   })
   describe('if there are words guessed', () => {
+    let wrapper
+    let guessedWords = [
+      { guessedWord: 'train', letterMatchCount: 3},
+      { guessedWord: 'agile', letterMatchCount: 1},
+      { guessedWord: 'party', letterMatchCount: 2},
+    ]
+    beforeEach(()=>{
+      wrapper =  setup({guessedWords})
+    })
+    test('renders without error', () => {
+      const component = findElement(wrapper, '.guessed-words')
+      expect(component.length).toBe(1)
+    })
 
+    test('renders guessed words section', () => {
+      const table = findElement(wrapper, '.guessed-table')
+      expect(table.length).toBe(1)
+    })
+
+    test('correct number of guessed words', () => {
+      const rows = findElement(wrapper, '.guessed-word')
+      expect(rows.length).toBe(guessedWords.length) 
+    })
   })
 })
