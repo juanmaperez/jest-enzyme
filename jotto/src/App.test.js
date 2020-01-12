@@ -1,9 +1,23 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { shallow, ShallowWrapper } from 'enzyme';
 import App from './App';
+import { findElement } from './../test/testUtils'
+/** 
+* Setup function to create a shallowWrapper of App Component
+* @function setup
+* @param {object} props component props specific to this setup
+* @param {object} state initial state for setup
+* @returns { ShallowWrapper}
+*/
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+const setup = (props = {}, state = null) => {
+  const wrapper = shallow(<App {...props} />)
+  if(state) wrapper.setState(state)
+  return wrapper
+}
+
+
+test('renders without an error', () => {
+  const wrapper = setup()
+  expect(findElement(wrapper, '.app').length).toBe(1)
 });

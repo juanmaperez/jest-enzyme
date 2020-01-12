@@ -2,12 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const GuessedWords = ({ guessedWords }) => (
-  <div className="guessed-words">
+  <div className="row guessed-words">
     { guessedWords.length < 1 
-      ? <h2 className="guessed-intructions">Guess the secret word!</h2>
+      ? <h2 className="guessed-intructions">Try to guess the secret word!</h2>
       : <div className="guessed-table">
-          <table>
-            <thead>
+          <h2>Guessed words</h2>
+          <table className="table table-sm">
+            <thead className="thead-light">
               <th>
                 <th>Pos</th>
                 <th>Word</th>
