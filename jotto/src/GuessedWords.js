@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 const GuessedWords = ({ guessedWords }) => (
   <div className="row guessed-words">
     { guessedWords.length < 1 
-      ? <h2 className="guessed-intructions">Try to guess the secret word!</h2>
+      ? <h3 className="guessed-intructions">Try to guess the secret word!</h3>
       : <div className="guessed-table">
-          <h2>Guessed words</h2>
+          <h3>Guessed words</h3>
           <table className="table table-sm">
             <thead className="thead-light">
               <th>
