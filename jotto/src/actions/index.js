@@ -1,8 +1,12 @@
-import { CORRECT_GUESS } from './constants'
+import { CORRECT_GUESS, GUESS_WORD } from './constants'
+
 /**
- * @function correctGuess
- * @returns { object } - Action object with type CORRECT_GUESS
+ * Returns Redux Thunk functions that dispatches GUESS_WORD action and 
+ * ( conditionally ) CORRECT_GUESS action
+ * @function gueesWord
+ * @param { string } guessedWord
+ * @returns { function } redux thunk function 
  */
-export const correctGuess = () => {
-  return { type: CORRECT_GUESS}
+export const guessWord = guessedWord => (dispatch, getState) => {
+
 }
