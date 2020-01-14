@@ -45,7 +45,7 @@ describe('Input', () => {
       })
       test('renders component without errors', () => {
         const component = findElement(wrapper, '.input-wrapper')
-        expect(component.length).toBe(0)
+        expect(component.length).toBe(1)
       })
   
       test('does not renders input box', () => {

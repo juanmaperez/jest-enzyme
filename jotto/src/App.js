@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="app container">
         <h1 className="row">Jotto</h1>
-        <Input />
+        <Input/>
         <Congrats success={false}/>
         <GuessedWords guessedWords={[]}/>
       </div>
