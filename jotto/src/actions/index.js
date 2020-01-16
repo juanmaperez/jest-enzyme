@@ -1,4 +1,5 @@
-import { CORRECT_GUESS, GUESS_WORD } from './constants'
+import axios from 'axios'
+import { CORRECT_GUESS, GUESS_WORD, SET_SECRET_WORD } from './constants'
 import { getLetterMatchCount } from './../helpers'
 
 /**
@@ -22,4 +23,14 @@ export const guessWord = guessedWord => (dispatch, getState) => {
   if(guessedWord === secretWord){
     dispatch({ type: CORRECT_GUESS})
   }
+}
+
+export const getSecretWord = () => (dispatch) => {
+  return axios.get('http://localhost:3030')
+    .then( response => {
+      dispatch({
+        type: SET_SECRET_WORD,
+        payload: response.data
+      })
+    })
 }
