@@ -22,7 +22,8 @@ describe('getSecretWord action creator', () => {
           response: secretWord
         })
       })
-
+      // it's important return the dispatch promise for testing no completing 
+      // until the promise resolves since we need what the expect function returns
       return store.dispatch(getSecretWord()).then(() => {
         const newState = store.getState()
         expect(newState.secretWord).toBe(secretWord)
