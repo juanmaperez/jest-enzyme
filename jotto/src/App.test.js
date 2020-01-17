@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
-import App from './App';
+import App, { UnconnectedApp } from './App';
 import { findElement, storeFactory } from './../test/testUtils'
 /** 
 * Setup function to create a shallowWrapper of App Component
@@ -56,4 +56,23 @@ describe('<App />', () => {
   })
 })
 
+
+describe('<UnconnectedApp/>', () => {
+  test('getSecretWord function runs on mount', () => {
+    const getSecretWordMock = jest.fn();
+    const props = {
+      getSecretWord: getSecretWordMock,
+      success: false,
+      guessedWords: []
+    }
+    const wrapper = shallow(<UnconnectedApp {...props } />)
+    // Call to the lifecycle method
+    wrapper.instance().componentDidMount()
+    const getSecretWordCallCount = getSecretWordMock.mock.calls.length
+    
+    expect(getSecretWordCallCount).toBe(1)
+
+
+  })
+})
 
