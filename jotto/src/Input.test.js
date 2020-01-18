@@ -108,4 +108,8 @@ describe('<UnconnectedInput />', () => {
     const guessMock = guessWordMock.mock.calls[0][0]
     expect(guessMock).toBe(guessedWord)
   })
+
+  test('input box clears after on submit', () => {
+    expect(wrapper.state('currentGuess')).toBe('')
+  })
 })
