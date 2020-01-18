@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import { findElement, storeFactory }from './../test/testUtils'
-import Input from './Input'
+import Input, { UnconnectedInput } from './Input'
 
 const setup = (initialState = {}) => {
   const store = storeFactory(initialState)
@@ -73,5 +73,39 @@ describe('Input', () => {
       const guessWordProp = wrapper.instance().props.guessWord
       expect(guessWordProp).toBeInstanceOf(Function)
     })
+  })
+})
+
+describe('<UnconnectedInput />', () => {
+  let guessWordMock
+  let wrapper
+  let guessedWord = 'train'
+  beforeEach(() => {
+    guessWordMock = jest.fn()
+
+    const props = {
+      guessWord: guessWordMock,
+      success: false
+    }
+    // set up app Input component with guessWordMock as the guessWord prop
+    wrapper = shallow(<UnconnectedInput {...props} />)
+    
+    wrapper.setState({currentGuess: guessedWord})
+
+    // find the button an simulate the click
+    const button = findElement(wrapper, '.submit-btn')
+    button.simulate('click', { preventDefault(){}})
+
+  })
+  test('guessWord function is called on click button', () => {  
+    // check to see if mock function ran once  
+    const guessWordCallsCount = guessWordMock.mock.calls.length
+    expect(guessWordCallsCount).toBe(1)
+  })
+
+
+  test('guessWord function is called with the value of the input box', () => {
+    const guessMock = guessWordMock.mock.calls[0][0]
+    expect(guessMock).toBe(guessedWord)
   })
 })
