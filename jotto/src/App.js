@@ -16,10 +16,15 @@ export class UnconnectedApp extends Component {
     const { success, guessedWords, secretWord } = this.props
     return (
       <div className="app container">
-        <h1 className="row">Jotto</h1>
-        <Input/>
-        <Congrats success={success}/> 
-        <GuessedWords guessedWords={guessedWords}/>
+        <h1 className="row mt-5">Jotto</h1>
+        <p className="row mt-3">The secret word is { secretWord }</p>
+        <div className="row mt-3">
+          <Input/>
+          <Congrats success={success}/> 
+        </div>
+        <div className="row mt-3">
+          <GuessedWords guessedWords={guessedWords}/>
+        </div>
       </div>
     );
   }

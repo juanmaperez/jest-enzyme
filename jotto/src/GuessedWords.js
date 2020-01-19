@@ -4,16 +4,16 @@ import PropTypes from 'prop-types'
 const GuessedWords = ({ guessedWords }) => (
   <div className="row guessed-words">
     { guessedWords.length < 1 
-      ? <h3 className="guessed-intructions">Try to guess the secret word!</h3>
-      : <div className="guessed-table">
+      ? <h3 className="col guessed-intructions row">Try to guess the secret word!</h3>
+      : <div className="col guessed-table">
           <h3>Guessed words</h3>
           <table className="table table-sm">
             <thead className="thead-light">
-              <th>
-                <th>Pos</th>
-                <th>Word</th>
-                <th>Appearances</th>
-              </th>
+              <tr>
+              <th>Pos</th>
+              <th>Word</th>
+              <th>Appearances</th>
+              </tr>
             </thead>
             <tbody>
             {

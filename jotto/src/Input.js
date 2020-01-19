@@ -4,7 +4,7 @@ import { guessWord } from './actions'
 
 export class UnconnectedInput extends Component {
 
-  state = { currentGuess : null }
+  state = { currentGuess : '' }
 
   handleSubmit = (event) => {
     event.preventDefault()
@@ -24,7 +24,7 @@ export class UnconnectedInput extends Component {
         ? null
         : ( <Fragment>
               <input className="input input-group-text" value={currentGuess} type="text" placeholder="Enter a word" onChange={(e) => this.setState({currentGuess: e.target.value })}/>
-              <button className="btn btn-info mb-2 submit-btn" onClick={(event) => this.handleSubmit(event)}>Submit</button>
+              <button className="btn btn-info submit-btn" onClick={(event) => this.handleSubmit(event)}>Submit</button>
             </Fragment>)
       }
       </div>
