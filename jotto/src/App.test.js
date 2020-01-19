@@ -71,8 +71,6 @@ describe('<UnconnectedApp/>', () => {
     const getSecretWordCallCount = getSecretWordMock.mock.calls.length
     
     expect(getSecretWordCallCount).toBe(1)
-
-
   })
 })
 

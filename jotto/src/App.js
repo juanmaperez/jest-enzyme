@@ -5,6 +5,7 @@ import './App.css';
 import GuessedWords from './GuessedWords'
 import Congrats from './Congrats'
 import Input from './Input'
+import GuessesCounter from './GuessesCounter'
 
 export class UnconnectedApp extends Component {
 
@@ -24,6 +25,9 @@ export class UnconnectedApp extends Component {
         </div>
         <div className="row mt-3">
           <GuessedWords guessedWords={guessedWords}/>
+        </div>
+        <div className="row mt-3">
+          <GuessesCounter guessedWords={guessedWords} />
         </div>
       </div>
     );
