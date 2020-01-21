@@ -34,3 +34,6 @@ export const getSecretWord = () => (dispatch) => {
       })
     })
 }
+
+
+export const resetGame = () => (dispatch) => {}

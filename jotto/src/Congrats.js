@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+
+import ResetButton from './ResetButton'
 /**
  * Functional React Component
  * @function 
@@ -10,7 +12,13 @@ import PropTypes from 'prop-types'
 const Congrats = ({success}) => {
   return (
     <div className="congrats">
-      { success ? <span className="alert alert-success message">Congrats! you guessed the word</span> : null }
+      { !success 
+        ? null 
+        : <Fragment>
+          <span className="alert alert-success message">Congrats! you guessed the word</span> 
+          <ResetButton/>
+        </Fragment>
+      }
     </div>
   )
 }
