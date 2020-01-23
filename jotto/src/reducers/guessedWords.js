@@ -1,4 +1,4 @@
-import { GUESS_WORD } from './../actions/constants'
+import { GUESS_WORD, RESET_WORDS } from './../actions/constants'
 
 
 /**
@@ -10,6 +10,8 @@ import { GUESS_WORD } from './../actions/constants'
 
 export default (state = [], { type, payload }) => {
   switch(type) {
+    case RESET_WORDS: 
+      return [];
     case GUESS_WORD:
       return [...state, payload]
     default:

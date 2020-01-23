@@ -10,7 +10,6 @@ const setup = (initialState = {}) => {
   return wrapper;
 }
 
-setup()
 
 describe('Input', () => {
   describe('render', () => {
@@ -64,6 +63,7 @@ describe('Input', () => {
     test('has success piece of state as prop', ( )=> {
       const success = true;
       const wrapper = setup({ success })
+      
       const successProp = wrapper.instance().props.success;
       expect(successProp).toBe(success)
     })

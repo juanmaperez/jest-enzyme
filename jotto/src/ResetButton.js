@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { resetGame } from './actions'
 
 
-export const UnconnectedResetButton = ({ success }) => {
-  return success 
-  ? <button className="btn btn-info">Reset Game</button>
-  : null
+export class UnconnectedResetButton extends Component {
+
+  handleClick = (e) => {
+    e.preventDefault()
+    this.props.resetGame()
+  } 
+
+  render() {
+    return this.props.success 
+    ? <button className="btn btn-info reset" onClick={(e) => this.handleClick(e)}>Reset Game</button>
+    : null
+  }
 }
 
 
@@ -19,7 +27,7 @@ const mapStateToProps = ({ success }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    resetGame: dispatch(resetGame())
+    resetGame: () => dispatch(resetGame())
   }
 }
 

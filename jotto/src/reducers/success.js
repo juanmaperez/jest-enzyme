@@ -1,4 +1,4 @@
-import { CORRECT_GUESS } from './../actions/constants'
+import { CORRECT_GUESS, RESET_SUCCESS } from './../actions/constants'
 
 /**
  * @function successReducer
@@ -8,6 +8,8 @@ import { CORRECT_GUESS } from './../actions/constants'
  */
 export default (state = false, action) => {
   switch(action.type){
+    case RESET_SUCCESS:
+      return false;
     case CORRECT_GUESS:
       return true;
     default:

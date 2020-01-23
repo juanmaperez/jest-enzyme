@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CORRECT_GUESS, GUESS_WORD, SET_SECRET_WORD } from './constants'
+import { CORRECT_GUESS, GUESS_WORD, SET_SECRET_WORD, RESET_SUCCESS, RESET_WORDS } from './constants'
 import { getLetterMatchCount } from './../helpers'
 
 /**
@@ -36,4 +36,19 @@ export const getSecretWord = () => (dispatch) => {
 }
 
 
-export const resetGame = () => (dispatch) => {}
+export const resetGame = () => (dispatch) => {
+  return axios.get('http://localhost:3030')
+    .then(response => {
+      dispatch({
+        type: SET_SECRET_WORD,
+        payload: response.data
+      })
+      dispatch({ 
+        type: RESET_SUCCESS,
+        payload: null
+      })
+      dispatch({
+        type: RESET_WORDS
+      })
+    })
+}
