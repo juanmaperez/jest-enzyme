@@ -1,22 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import { resetGame } from './actions'
 
 
-export class UnconnectedResetButton extends Component {
+export const UnconnectedResetButton = ({resetGame, success}) => {
 
-  handleClick = (e) => {
+  const handleClick = (e) => {
     e.preventDefault()
-    this.props.resetGame()
+    resetGame()
   } 
 
-  render() {
-    return this.props.success 
-    ? <button className="btn btn-info reset" onClick={(e) => this.handleClick(e)}>Reset Game</button>
-    : null
-  }
+  return success 
+  ? <button className="btn btn-info reset" onClick={(e) => handleClick(e)}>Reset Game</button>
+  : null
 }
+
 
 
 const mapStateToProps = ({ success }) => {

@@ -32,15 +32,19 @@ describe('<ResetButton />', () => {
 describe('Redux props on ResetButton', () => {
   test('has success piece of state as prop', ( )=> {
     const success = true;
-    const wrapper = setup({ success })
-    const successProp = wrapper.instance().props.success;
+    const store = storeFactory({success})
+    const wrapper = shallow(<ResetButton store={store} />).dive()
+    const successProp = wrapper.props().success;
     expect(successProp).toBe(success)
   })
 
   test('guessWord action creator is a function prop', () => {
     const success = true;
-    const wrapper = setup({ success })
-    const resetGameProp = wrapper.instance().props.resetGame
+    const resetGameMock = jest.fn()
+    const store = storeFactory({success})
+    const wrapper = shallow(<ResetButton store={store} resetGame={resetGameMock}/>).dive()
+
+    const resetGameProp = wrapper.props().resetGame
     expect(resetGameProp).toBeInstanceOf(Function)
   })
 })
@@ -62,7 +66,7 @@ describe('<UnconnectedResetButton />', () => {
     button.simulate('click', { preventDefault(){}})
   })
 
-  test('after click the button disappears', () => {
+  test('the function is called once', () => {
     const resetGameCount = resetGameMock.mock.calls.length
     expect(resetGameCount).toBe(1)
   })
