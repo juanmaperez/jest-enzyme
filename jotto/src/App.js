@@ -19,7 +19,7 @@ export class UnconnectedApp extends Component {
     return (
       <div className="app container">
         <h1 className="row mt-5">Jotto</h1>
-        {/* <p className="row mt-3">The secret word is { secretWord }</p> */}
+        <p className="d-none row mt-3">The secret word is { secretWord }</p>
         <div className="row mt-3">
           <Input/>
           <Congrats success={success}/> 
