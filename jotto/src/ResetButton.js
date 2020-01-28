@@ -4,16 +4,15 @@ import { connect } from 'react-redux'
 import { resetGame } from './actions'
 
 
-export const UnconnectedResetButton = ({resetGame, success}) => {
+export const UnconnectedResetButton = ({resetGame }) => {
 
   const handleClick = (e) => {
     e.preventDefault()
     resetGame()
   } 
-
-  return success 
-  ? <button className="btn btn-info reset" onClick={(e) => handleClick(e)}>Reset Game</button>
-  : null
+  
+  return <button className="btn btn-info reset" onClick={(e) => handleClick(e)}>Reset Game</button>
+  
 }
 
 

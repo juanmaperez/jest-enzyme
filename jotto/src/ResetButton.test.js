@@ -10,22 +10,11 @@ const setup = (state = {}) => {
 }
 
 describe('<ResetButton />', () => {
-  describe('SecretWord not guessed', () => {
-    test('it renders the button', () => {
-      const success = true;
-      const wrapper = setup({success})
-      const button = findElement(wrapper, '.reset')
-      expect(button.length).toBe(1) 
-    })
-  })
-
-  describe('SecretWord guessed', () => {
-    test('it doesnt renders the button', () => {
-      const success = false;
-      const wrapper = setup({success})
-      const button = findElement(wrapper, '.reset')
-      expect(button.length).toBe(0) 
-    })
+  test('it renders the button', () => {
+    const success = true;
+    const wrapper = setup({success})
+    const button = findElement(wrapper, '.reset')
+    expect(button.length).toBe(1) 
   })
 })
 

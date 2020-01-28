@@ -15,9 +15,9 @@ const Congrats = ({success}) => {
       { !success 
         ? null 
         : <Fragment>
-          <span className="alert alert-success message">Congrats! you guessed the word</span> 
-          <ResetButton/>
-        </Fragment>
+            <span className="alert alert-success message">Congrats! you guessed the word</span> 
+            <ResetButton/>
+          </Fragment>
       }
     </div>
   )
