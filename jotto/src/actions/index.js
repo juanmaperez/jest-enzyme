@@ -36,6 +36,24 @@ export const getSecretWord = () => (dispatch) => {
 }
 
 
+export const setSecretWord = (secretWord) => (dispatch) => {
+  return new Promise((resolve, reject) => {
+    dispatch({
+      type: SET_SECRET_WORD,
+      payload: secretWord
+    })
+    dispatch({ 
+      type: RESET_SUCCESS,
+      payload: null
+    })
+    dispatch({
+      type: RESET_WORDS
+    })
+    resolve(true)
+  })
+}
+
+
 export const resetGame = () => (dispatch) => {
   return axios.get('http://localhost:3030')
     .then(response => {
