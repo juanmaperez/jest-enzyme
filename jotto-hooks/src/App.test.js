@@ -31,6 +31,15 @@ describe('<App/>', () => {
       expect(mockGetSecretWord).toHaveBeenCalled()
     })
 
+    test('it does not get called when app updates', () => {
+      const wrapper = setup();
+      // we need to clear the mock since getSecretWords gets called on App mount when we setup
+      mockGetSecretWord.mockClear()
+      // We use setProps to rerender the component
+      wrapper.setProps();
+      
+      expect(mockGetSecretWord).not.toHaveBeenCalled()
+    })
   })
 })
 
