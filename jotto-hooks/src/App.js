@@ -37,11 +37,19 @@ function App() {
     hookActions.getSecretWord(setSecretWord)
   }, [])
 
-  return (
-    <div className="App">
-      <Input secretWord="party"/>
-    </div>
-  );
+
+  const { secretWord } = state
+  return secretWord 
+    ? <div className="App container">
+        <Input secretWord={ secretWord }/>
+      </div>
+    : <div className="container spinner">
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+          <p>Loading secret word</p>
+        </div>
+      </div>
+  ;
 }
 
 export default App;
