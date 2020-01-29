@@ -5,8 +5,9 @@ const Input = ({ secretWord}) => {
 
   const [currentGuess, setCurrentGuess ] = React.useState('')
 
-  const handleSubmit = () => {
-
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setCurrentGuess(currentGuess)
   }
 
   return (
@@ -21,7 +22,7 @@ const Input = ({ secretWord}) => {
         />
         <button 
           className="submit btn btn-primary mb-2"
-          onClick={ handleSubmit }
+          onClick={ (e) => handleSubmit(e) }
         >Guess</button>
       </form>
     </div>
