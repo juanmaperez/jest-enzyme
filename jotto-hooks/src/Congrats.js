@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-import ResetButton from './ResetButton'
+import LanguageContext from './contexts/LanguageContext'
+import stringsModule from './helpers/strings'
+
 /**
  * Functional React Component
  * @function 
@@ -9,14 +11,17 @@ import ResetButton from './ResetButton'
  * @returns { JSX.Element } Rendered component or null if 'success' props is false
  */
 
-const Congrats = ({success}) => {
+const Congrats = (props) => {
+  const language = React.useContext(LanguageContext)
+  const {success} = props
   return (
     <div className="congrats">
       { !success 
         ? null 
         : <Fragment>
-            <span className="alert alert-success message">Congrats! you guessed the word</span> 
-            <ResetButton/>
+            <span className="alert alert-success message">
+              {stringsModule.getStringByLanguage(language, 'congrats')}
+            </span> 
           </Fragment>
       }
     </div>
