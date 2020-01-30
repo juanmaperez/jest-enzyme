@@ -34,7 +34,7 @@ describe('<GuessedWords />', ()=> {
       expect(component.length).toBe(1)
     })
     test('renders intructions to guess a word', () => {
-      const instructions = findElement(wrapper, '.guessed-intructions')
+      const instructions = findElement(wrapper, '.guessed-instructions')
       expect(instructions.length).toBe(1)
     })
 
@@ -63,5 +63,22 @@ describe('<GuessedWords />', ()=> {
       const rows = findElement(wrapper, '.guessed-word')
       expect(rows.length).toBe(guessedWords.length) 
     })
+  })
+})
+
+
+describe('<LanguagePicker/>', () => {
+  test('correctly renders guess prompt string in english by default', () => {
+    const wrapper = setup({guessedWords: []})
+    const guessInstructions = findElement(wrapper, '.guessed-instructions')
+    expect(guessInstructions.text()).toBe('Try to guess the secret word!')
+  })
+
+  test('correctly renders guess prompt in spanish', () => {
+    const mockUseContext = jest.fn().mockReturnValue('es')
+    React.useContext = mockUseContext;
+    const wrapper = setup({guessedWords: []})
+    const guessInstructions = findElement(wrapper, '.guessed-instructions')
+    expect(guessInstructions.text()).toBe('Intenta adivinar la palabra secreta')
   })
 })

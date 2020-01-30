@@ -1,43 +1,45 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import GiveUpButton from './GiveUpButton'
+import LanguageContext from './contexts/LanguageContext'
+import stringsModule from './helpers/strings'
 
-const GuessedWords = ({ guessedWords }) => (
-  <Fragment>
-    <div className="row w-100 guessed-words">
-      { guessedWords.length < 1 
-        ? <h3 className="col col-12 guessed-intructions row">Try to guess the secret word!</h3>
-        : <div className="col col-12 w100 guessed-table">
-            <h3>Guessed words</h3>
-            <table className="table table-sm">
-              <thead className="thead-light">
-                <tr>
-                <th>Pos</th>
-                <th>Word</th>
-                <th>Appearances</th>
-                </tr>
-              </thead>
-              <tbody>
-              {
-                guessedWords.map((word, idx) => {
-                  return (
-                  <tr key={idx} className="guessed-word">
-                    <td>#{ idx + 1}</td>
-                    <td>{ word.guessedWord }</td>
-                    <td>{ word.letterMatchCount }</td>
+const GuessedWords = ({ guessedWords }) => {
+
+  const language = React.useContext(LanguageContext)
+  return (
+    <Fragment>
+      <div className="row w-100 guessed-words">
+        { guessedWords.length < 1 
+          ? <h3 className="col col-12 guessed-instructions row">{ stringsModule.getStringByLanguage(language, 'guessPrompt')}</h3>
+          : <div className="col col-12 w100 guessed-table">
+              <h3>{ stringsModule.getStringByLanguage(language, 'guessedWords')}</h3>
+              <table className="table table-sm">
+                <thead className="thead-light">
+                  <tr>
+                  <th>Pos</th>
+                  <th>{ stringsModule.getStringByLanguage(language, 'guessColumnHeader')}</th>
+                  <th>{ stringsModule.getStringByLanguage(language, 'matchingLettersColumnHeader')}</th>
                   </tr>
-                )})
-              }
-              </tbody>
-            </table>
-          </div>
-      }
-    </div>
-    <GiveUpButton />
-  </Fragment>
-
-)
-
+                </thead>
+                <tbody>
+                {
+                  guessedWords.map((word, idx) => {
+                    return (
+                    <tr key={idx} className="guessed-word">
+                      <td>#{ idx + 1}</td>
+                      <td>{ word.guessedWord }</td>
+                      <td>{ word.letterMatchCount }</td>
+                    </tr>
+                  )})
+                }
+                </tbody>
+              </table>
+            </div>
+        }
+      </div>
+    </Fragment>
+  )
+}
 GuessedWords.propTypes = {
   guessedWords: PropTypes.arrayOf(
     PropTypes.shape({
