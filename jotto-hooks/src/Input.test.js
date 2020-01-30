@@ -1,12 +1,34 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import { findElement, checkProps } from '../test/testUtils'
 import Input from './Input'
 
-const setup = (props = { secretWord: 'party'}) => {
-  const wrapper = shallow(<Input {...props } />)
+import LanguageContext from './contexts/LanguageContext'
+
+const setup = ({ secretWord, language}) => {
+  secretWord = secretWord || 'party'
+  language = language || 'en'
+  const wrapper = mount(
+    <LanguageContext.Provider value={ language }>
+      <Input secretWord={secretWord} />
+    </LanguageContext.Provider>
+  )
   return wrapper
 }
+
+describe('<LanguagePicker/>', () => {
+  test('it renders the correct string for submit on english language', () => {
+    const wrapper = setup({})
+    const button = findElement(wrapper, '.submit')
+    expect(button.text()).toBe('Submit')
+  })
+
+  test('it renders the correct string for submit on spanish language', () => {
+    const wrapper = setup({ language: 'es'})
+    const button = findElement(wrapper, '.submit')
+    expect(button.text()).toBe('Enviar')
+  })
+})
 
 describe('<Input/>', () => {
   test('props received are correct', () => {
@@ -16,7 +38,7 @@ describe('<Input/>', () => {
 
   test('it renders without errors', () => {
     const secretWord = 'party'
-    const wrapper =  setup({ secretWord})
+    const wrapper =  setup({ secretWord })
     const component = findElement(wrapper, '.input-component')
     expect(component.length).toBe(1)
   })
@@ -29,7 +51,7 @@ describe('state controlled input field', () => {
   beforeEach(() => {
     mockSetCurrentGuess.mockClear()
     React.useState = jest.fn(() => ['', mockSetCurrentGuess])
-    wrapper = setup()
+    wrapper = setup({})
   })
 
   test('state updates with value of input box upon change', () => {

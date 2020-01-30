@@ -11,9 +11,10 @@ import stringsModule from './helpers/strings'
  * @returns { JSX.Element } Rendered component or null if 'success' props is false
  */
 
-const Congrats = (props) => {
+const Congrats = ({success}) => {
+
   const language = React.useContext(LanguageContext)
-  const {success} = props
+  
   return (
     <div className="congrats">
       { !success 
