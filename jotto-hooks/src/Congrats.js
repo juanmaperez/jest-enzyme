@@ -1,20 +1,20 @@
 import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
 
+import SuccessContext from './contexts/SuccessContext'
 import LanguageContext from './contexts/LanguageContext'
 import stringsModule from './helpers/strings'
 
 /**
  * Functional React Component
  * @function 
- * @param { object } props React props
  * @returns { JSX.Element } Rendered component or null if 'success' props is false
  */
 
-const Congrats = ({success}) => {
+const Congrats = () => {
 
   const language = React.useContext(LanguageContext)
-  
+  const [success] = SuccessContext.useSuccess()
+
   return (
     <div className="congrats">
       { !success 
@@ -27,10 +27,6 @@ const Congrats = ({success}) => {
       }
     </div>
   )
-}
-
-Congrats.propTypes = {
-  success: PropTypes.bool.isRequired
 }
 
 export default Congrats;

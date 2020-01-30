@@ -3,6 +3,7 @@ import { mount, ShallowWrapper } from 'enzyme'
 import { findElement, checkProps } from './../test/testUtils'
 import LanguageContext from './contexts/LanguageContext'
 import Congrats from './Congrats'
+import SuccessContext from './contexts/SuccessContext'
 
 /** 
  * Factory function to create a ShallowWrapper for the Congrats Component
@@ -16,7 +17,9 @@ const setup = ({success, language}) => {
   success = success || false
   return mount(
     <LanguageContext.Provider value={language}>
-      <Congrats success={success}/>
+      <SuccessContext.SuccessProvider value={[success, jest.fn()]}>
+        <Congrats />
+      </SuccessContext.SuccessProvider>
     </LanguageContext.Provider>
   )
 }
@@ -42,21 +45,16 @@ describe('<Congrats />', () => {
     expect(component.length).toBe(1)
   })
   
-  test('renders no text when success prop is false', () => {
-    const wrapper = setup({success: false})
+  test('renders no text when success is false', () => {
+    const wrapper = setup({})
     const component = findElement(wrapper, '.congrats')
     expect(component.text()).toBe('')
   })
   
-  test('renders non-empty congrats message when success prop is true', () => {
+  test('renders non-empty congrats message when success is true', () => {
     const wrapper = setup({success: true})
     const component = findElement(wrapper, '.message')
     expect(component.text().length).not.toBe(0)
   })
   
-  
-  test('does not throw warning with expected props', () => {
-    const expectedProps = { success: false }
-    checkProps(Congrats, expectedProps)
-  })
 })

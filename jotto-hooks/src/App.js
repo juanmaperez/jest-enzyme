@@ -1,10 +1,15 @@
 import React from 'react';
 import './App.css';
-import Input from './Input'
+
 import hookActions from './actions/hookActions';
+
+import Input from './Input'
 import LanguagePicker from './LanguagePicker'
+import Congrats from './Congrats'
+import GuessedWords from './GuessedWords'
 
 import LanguageContext from './contexts/LanguageContext'
+import SuccessContext from './contexts/SuccessContext'
 
 
 
@@ -56,7 +61,11 @@ function App() {
         <h1>Jotto {secretWord}</h1>
         <LanguageContext.Provider value={language}>
           <LanguagePicker setLanguage={ setLanguage} />
-          <Input secretWord={ secretWord }/>
+          <SuccessContext.SuccessProvider>
+            <Input secretWord={ secretWord }/>
+            <Congrats />
+          </SuccessContext.SuccessProvider>
+          {/* <GuessedWords/> */}
         </LanguageContext.Provider>
       </div>
     : <div className="container spinner">
