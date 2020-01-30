@@ -53,7 +53,7 @@ function App() {
   const { secretWord, language } = state
   return secretWord 
     ? <div className="App container">
-        <h1>Jotto</h1>
+        <h1>Jotto {secretWord}</h1>
         <LanguageContext.Provider value={language}>
           <LanguagePicker setLanguage={ setLanguage} />
           <Input secretWord={ secretWord }/>
