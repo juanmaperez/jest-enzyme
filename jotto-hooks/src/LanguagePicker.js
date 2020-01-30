@@ -8,7 +8,12 @@ const LanguagePicker = ({ setLanguage }) => {
   ]
   return (
     <div className="language-picker">
-      { languages.map(lang => <span key={lang.code} className="link" onClick={() => setLanguage(lang.code)}>{lang.text}</span> )}
+      { languages.map(lang => 
+        <span key={lang.code} 
+              className="link" 
+              onClick={() => setLanguage(lang.code)}> 
+          &nbsp; { lang.text } &nbsp;
+        </span> )}
     </div>
   )
 }

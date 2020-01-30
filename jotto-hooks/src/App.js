@@ -2,8 +2,13 @@ import React from 'react';
 import './App.css';
 import Input from './Input'
 import hookActions from './actions/hookActions';
+import LanguagePicker from './LanguagePicker'
 
-const initialState = { secretWord: null }
+import LanguageContext from './contexts/LanguageContext'
+
+
+
+const initialState = { secretWord: null, language: 'en'}
 
 /**
  * Reducer to update the state called automatically by dispatch
@@ -19,6 +24,11 @@ const reducer = (state, action) => {
         ...state, 
         secretWord: action.payload
       }
+    case 'SET_LANGUAGE':
+      return {
+        ...state,
+        language: action.payload
+      }
     default: 
       return state
   }
@@ -33,15 +43,21 @@ function App() {
 
   const setSecretWord = (secretWord) => dispatch({ type: 'SET_SECRET_WORD', payload: secretWord})
 
+  const setLanguage = (lang) => dispatch({ type: 'SET_LANGUAGE', payload: lang})
+
   React.useEffect(() => {
     hookActions.getSecretWord(setSecretWord)
   }, [])
 
 
-  const { secretWord } = state
+  const { secretWord, language } = state
   return secretWord 
     ? <div className="App container">
-        <Input secretWord={ secretWord }/>
+        <h1>Jotto</h1>
+        <LanguageContext.Provider value={language}>
+          <LanguagePicker setLanguage={ setLanguage} />
+          <Input secretWord={ secretWord }/>
+        </LanguageContext.Provider>
       </div>
     : <div className="container spinner">
         <div className="spinner-border" role="status">

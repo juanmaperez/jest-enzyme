@@ -28,7 +28,6 @@ describe('<LanguagePicker/>', () => {
   test('calls setLanguage prop upon click', () => {
     const wrapper = setup()
     const languageLink = findElement(wrapper, '.link')
-    console.log(languageLink.debug())
     languageLink.first().simulate('click', {preventDefault: () => {}})
     expect(mockSetLanguage).toHaveBeenCalled()
   })
