@@ -4,13 +4,17 @@ import { findElement, checkProps } from '../test/testUtils'
 import Input from './Input'
 
 import LanguageContext from './contexts/LanguageContext'
+import SuccessContext from './contexts/SuccessContext'
 
-const setup = ({ secretWord, language}) => {
+const setup = ({ secretWord, language, success}) => {
   secretWord = secretWord || 'party'
   language = language || 'en'
+  success = success || false
   const wrapper = mount(
     <LanguageContext.Provider value={ language }>
-      <Input secretWord={secretWord} />
+      <SuccessContext.SuccessProvider value={[success, jest.fn()]}>
+        <Input secretWord={secretWord} />
+      </SuccessContext.SuccessProvider>
     </LanguageContext.Provider>
   )
   return wrapper
@@ -68,4 +72,10 @@ describe('state controlled input field', () => {
 
     expect(mockSetCurrentGuess).toHaveBeenCalledWith('')
   })
+})
+
+
+test('input component does not show when success is true' , () => {
+  const wrapper = setup({ secretWord: 'party', success: true })
+  expect(wrapper.isEmptyRender()).toBe(true)
 })
