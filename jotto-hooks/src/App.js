@@ -67,7 +67,7 @@ function App() {
               <Input secretWord={ secretWord }/>
               <Congrats />
             </SuccessContext.SuccessProvider>
-            <GuessedWords/>
+              <GuessedWords/>
           </GuessedWordsContext.GuessedWordsProvider>
         </LanguageContext.Provider>
       </div>
