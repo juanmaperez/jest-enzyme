@@ -10,6 +10,7 @@ import GuessedWords from './GuessedWords'
 
 import LanguageContext from './contexts/LanguageContext'
 import SuccessContext from './contexts/SuccessContext'
+import GuessedWordsContext from './contexts/GuessedWordsContext';
 
 
 
@@ -61,11 +62,13 @@ function App() {
         <h1>Jotto {secretWord}</h1>
         <LanguageContext.Provider value={language}>
           <LanguagePicker setLanguage={ setLanguage} />
-          <SuccessContext.SuccessProvider>
-            <Input secretWord={ secretWord }/>
-            <Congrats />
-          </SuccessContext.SuccessProvider>
-          {/* <GuessedWords/> */}
+          <GuessedWordsContext.GuessedWordsProvider>
+            <SuccessContext.SuccessProvider>
+              <Input secretWord={ secretWord }/>
+              <Congrats />
+            </SuccessContext.SuccessProvider>
+            <GuessedWords/>
+          </GuessedWordsContext.GuessedWordsProvider>
         </LanguageContext.Provider>
       </div>
     : <div className="container spinner">

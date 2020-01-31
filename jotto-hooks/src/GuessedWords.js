@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
 import LanguageContext from './contexts/LanguageContext'
 import stringsModule from './helpers/strings'
+import GuessedWordsContext from './contexts/GuessedWordsContext'
 
-const GuessedWords = ({ guessedWords }) => {
+const GuessedWords = () => {
 
   const language = React.useContext(LanguageContext)
+  const [ guessedWords ] = GuessedWordsContext.useGuessedWords()
   return (
     <Fragment>
       <div className="row w-100 guessed-words">
@@ -40,13 +41,6 @@ const GuessedWords = ({ guessedWords }) => {
     </Fragment>
   )
 }
-GuessedWords.propTypes = {
-  guessedWords: PropTypes.arrayOf(
-    PropTypes.shape({
-      guessedWord: PropTypes.string.isRequired,
-      letterMatchCount: PropTypes.number.isRequired
-    })
-  ).isRequired
-}
+
 
 export default GuessedWords
